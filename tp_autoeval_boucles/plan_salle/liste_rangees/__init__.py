@@ -77,9 +77,15 @@ def check(n: int):
     attendu_base = rangees_libres(n)
     with exercise_cwd():
         try:
+            # .stdout(check50.EOF) est indispensable : .stdout(attendu) seul
+            # ne verifie qu'un PREFIXE du flux (pexpect.expect), donc un
+            # programme qui affiche les bonnes lignes PUIS continue (ex. un
+            # nombre de rangees fixe et superieur a n, avec alternance)
+            # passerait quand meme sans cette verification supplementaire.
             (check50.run("./liste_rangees")
                 .stdin(str(n))
                 .stdout(attendu_base, regex=False)
+                .stdout(check50.EOF)
                 .exit(0))
             return
         except check50.Failure:
@@ -89,6 +95,7 @@ def check(n: int):
         (check50.run("./liste_rangees")
             .stdin(str(n))
             .stdout(attendu_bonus, regex=False)
+            .stdout(check50.EOF)
             .exit(0))
 
 
@@ -98,4 +105,5 @@ def check_bonus(n: int):
         (check50.run("./liste_rangees")
             .stdin(str(n))
             .stdout(attendu, regex=False)
+            .stdout(check50.EOF)
             .exit(0))

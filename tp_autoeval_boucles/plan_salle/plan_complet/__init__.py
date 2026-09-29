@@ -80,10 +80,16 @@ def check(n: int, m: int):
     attendu_base = grille_libre(n, m)
     with exercise_cwd():
         try:
+            # .stdout(check50.EOF) est indispensable : .stdout(attendu) seul
+            # ne verifie qu'un PREFIXE du flux (pexpect.expect), donc un
+            # programme qui affiche la bonne grille PUIS continue (ex. des
+            # dimensions figees et plus grandes que n/m demandes) passerait
+            # quand meme sans cette verification supplementaire.
             (check50.run("./plan_complet")
                 .stdin(str(n))
                 .stdin(str(m))
                 .stdout(attendu_base, regex=False)
+                .stdout(check50.EOF)
                 .exit(0))
             return
         except check50.Failure:
@@ -94,6 +100,7 @@ def check(n: int, m: int):
             .stdin(str(n))
             .stdin(str(m))
             .stdout(attendu_bonus, regex=False)
+            .stdout(check50.EOF)
             .exit(0))
 
 
@@ -104,4 +111,5 @@ def check_bonus(n: int, m: int):
             .stdin(str(n))
             .stdin(str(m))
             .stdout(attendu, regex=False)
+            .stdout(check50.EOF)
             .exit(0))
