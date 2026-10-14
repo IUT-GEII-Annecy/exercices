@@ -1,13 +1,13 @@
 check50:
   files: &check50_files
     - !exclude "*"
-    - !require variables.c
-    - !require condition.c
-    - !require compte_a_rebours.c
-    - !require accumulateur.c
-    - !require diviseur_tension.c
-    - !require synthese.c
-    - !require pgcd.c
+    - !require 01_variables.c
+    - !require 02_condition.c
+    - !require 03_compte_a_rebours.c
+    - !require 04_accumulateur.c
+    - !require 05_diviseur_tension.c
+    - !require 06_synthese.c
+    - !require 07_pgcd.c
 
 submit50:
   files: *check50_files

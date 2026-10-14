@@ -1,7 +1,7 @@
 check50:
   files: &check50_files
     - !exclude "*"
-    - !require condition.c
+    - !require 02_condition.c
 
 submit50:
   files: *check50_files

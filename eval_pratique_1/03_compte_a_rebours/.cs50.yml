@@ -1,7 +1,7 @@
 check50:
   files: &check50_files
     - !exclude "*"
-    - !require compte_a_rebours.c
+    - !require 03_compte_a_rebours.c
 
 submit50:
   files: *check50_files

@@ -1,7 +1,7 @@
 check50:
   files: &check50_files
     - !exclude "*"
-    - !require synthese.c
+    - !require 06_synthese.c
 
 submit50:
   files: *check50_files

@@ -1,7 +1,7 @@
 check50:
   files: &check50_files
     - !exclude "*"
-    - !require pgcd.c
+    - !require 07_pgcd.c
 
 submit50:
   files: *check50_files

@@ -1,25 +1,25 @@
 import check50
 import check50.c
 
-MAIN = "compte_a_rebours.c"
+MAIN = "03_compte_a_rebours.c"
 
 
 @check50.check()
 def exists():
-    """compte_a_rebours.c existe"""
+    """03_compte_a_rebours.c existe"""
     check50.exists(MAIN)
 
 
 @check50.check(exists)
 def compiles():
-    """compte_a_rebours.c compile sans erreur"""
+    """03_compte_a_rebours.c compile sans erreur"""
     check50.c.compile(MAIN, lcs50=True)
 
 
 @check50.check(compiles)
 def n_5():
     """n=5 : compte à rebours puis Décollage !"""
-    check50.run("./compte_a_rebours").stdin("5\n").stdout(
+    check50.run("./03_compte_a_rebours").stdin("5\n").stdout(
         "5\n4\n3\n2\n1\nDécollage !\n", regex=False
     ).exit(0)
 
@@ -27,6 +27,6 @@ def n_5():
 @check50.check(compiles)
 def n_0():
     """n=0 : seul Décollage ! est affiché"""
-    check50.run("./compte_a_rebours").stdin("0\n").stdout(
+    check50.run("./03_compte_a_rebours").stdin("0\n").stdout(
         "Décollage !\n", regex=False
     ).exit(0)
