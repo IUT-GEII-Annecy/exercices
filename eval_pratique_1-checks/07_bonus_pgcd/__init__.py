@@ -32,6 +32,12 @@ def pgcd_premiers_entre_eux():
     check50.run("./07_pgcd").stdin("17\n5\n").stdout("PGCD : 1", regex=False).exit(0)
 
 
+@check50.check(compiles)
+def pgcd_b_nul():
+    """PGCD(7, 0) = 7 (cas de base de la récursion d'Euclide)"""
+    check50.run("./07_pgcd").stdin("7\n0\n").stdout("PGCD : 7", regex=False).exit(0)
+
+
 @check50.check(exists)
 def fonction_pgcd_recursive():
     """la fonction pgcd existe, est bien definie et calcule le bon resultat"""

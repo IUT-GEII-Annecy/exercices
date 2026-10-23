@@ -36,6 +36,22 @@ def pont_diviseur_inegal():
     ).exit(0)
 
 
+@check50.check(compiles)
+def r1_nul():
+    """R1=0 (borne) -> Vout=Vin (10.00 V)"""
+    check50.run("./05_diviseur_tension").stdin("10\n0\n1000\n").stdout(
+        "Tension de sortie : 10.00 V", regex=False
+    ).exit(0)
+
+
+@check50.check(compiles)
+def r2_nul():
+    """R2=0 (borne) -> Vout=0.00 V"""
+    check50.run("./05_diviseur_tension").stdin("10\n1000\n0\n").stdout(
+        "Tension de sortie : 0.00 V", regex=False
+    ).exit(0)
+
+
 @check50.check(exists)
 def fonction_tension_sortie():
     """la fonction tension_sortie existe et calcule le bon resultat"""
@@ -52,4 +68,6 @@ def fonction_tension_sortie():
     # echoue -- c'est le but : empecher de faire l'exercice sans fonction
     # dediee.
     check50.c.compile("_harness.c", "_student.o", exe_name="_test_tension_sortie", lcs50=True)
-    check50.run("./_test_tension_sortie").stdout("8.00\n5.00\n", regex=False).exit(0)
+    # Harnais (_harness.c) : 8.00 (R1,R2 inegaux), 5.00 (R1=R2), 10.00
+    # (R1=0, borne -- Vout=Vin), 0.00 (R2=0, borne -- Vout=0).
+    check50.run("./_test_tension_sortie").stdout("8.00\n5.00\n10.00\n0.00\n", regex=False).exit(0)

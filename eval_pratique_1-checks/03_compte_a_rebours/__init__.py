@@ -30,3 +30,11 @@ def n_0():
     check50.run("./03_compte_a_rebours").stdin("0\n").stdout(
         "Décollage !\n", regex=False
     ).exit(0)
+
+
+@check50.check(compiles)
+def n_1():
+    """n=1 (borne basse du compte à rebours) : 1 puis Décollage !"""
+    check50.run("./03_compte_a_rebours").stdin("1\n").stdout(
+        "1\nDécollage !\n", regex=False
+    ).exit(0)

@@ -36,6 +36,16 @@ def zero_hors_tolerance():
     ).exit(0)
 
 
+@check50.check(compiles)
+def bornes_incluses():
+    """min=220, max=230 : mesures exactement sur les bornes (220, 230)
+    ne sont pas hors tolérance ("strictement hors") ; 219 et 231, juste
+    à côté, le sont -> 2 hors tolérance sur 4"""
+    check50.run("./06_synthese").stdin("220\n230\n4\n220\n230\n219\n231\n").stdout(
+        "Mesures hors tolérance : 2", regex=False
+    ).exit(0)
+
+
 @check50.check(exists)
 def fonction_hors_tolerance():
     """la fonction hors_tolerance existe et calcule le bon resultat"""
